@@ -11,7 +11,11 @@ const stats = [
   { icon: Globe, label: 'Countries Served', value: '25+' },
 ];
 
-const AboutSection = () => {
+interface AboutSectionProps {
+  videoSrc?: string;
+}
+
+const AboutSection = ({ videoSrc }: AboutSectionProps) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -43,27 +47,40 @@ const AboutSection = () => {
             className="relative"
           >
             <div className="relative aspect-video bg-muted rounded-2xl overflow-hidden shadow-large">
-              {/* Video Placeholder */}
-              <div className="absolute inset-0 bg-gradient-hero flex items-center justify-center">
-                <Button 
-                  size="lg"
-                  className="bg-primary-foreground/20 backdrop-blur-sm hover:bg-primary-foreground/30 border-2 border-primary-foreground/50 text-primary-foreground rounded-full w-20 h-20 p-0 transition-all duration-300 hover:scale-110"
+              {videoSrc ? (
+                <video 
+                  className="w-full h-full object-cover"
+                  controls
+                  poster=""
                 >
-                  <Play className="h-8 w-8 ml-1" fill="currentColor" />
-                </Button>
-              </div>
-              
-              {/* Video Overlay Text */}
-              <div className="absolute bottom-4 left-4 right-4">
-                <div className="bg-black/50 backdrop-blur-sm rounded-lg p-4">
-                  <h3 className="text-primary-foreground font-semibold text-lg">
-                    Company Teaser Video
-                  </h3>
-                  <p className="text-primary-foreground/80 text-sm">
-                    Discover our journey and vision
-                  </p>
-                </div>
-              </div>
+                  <source src={videoSrc} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              ) : (
+                <>
+                  {/* Video Placeholder */}
+                  <div className="absolute inset-0 bg-gradient-hero flex items-center justify-center">
+                    <Button 
+                      size="lg"
+                      className="bg-primary-foreground/20 backdrop-blur-sm hover:bg-primary-foreground/30 border-2 border-primary-foreground/50 text-primary-foreground rounded-full w-20 h-20 p-0 transition-all duration-300 hover:scale-110"
+                    >
+                      <Play className="h-8 w-8 ml-1" fill="currentColor" />
+                    </Button>
+                  </div>
+                  
+                  {/* Video Overlay Text */}
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <div className="bg-black/50 backdrop-blur-sm rounded-lg p-4">
+                      <h3 className="text-primary-foreground font-semibold text-lg">
+                        Company Teaser Video
+                      </h3>
+                      <p className="text-primary-foreground/80 text-sm">
+                        Add your video URL to display here
+                      </p>
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
           </motion.div>
 

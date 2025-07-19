@@ -36,7 +36,11 @@ const contactInfo = [
   }
 ];
 
-const ContactSection = () => {
+interface ContactSectionProps {
+  mapEmbedUrl?: string;
+}
+
+const ContactSection = ({ mapEmbedUrl }: ContactSectionProps) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const { toast } = useToast();
@@ -150,17 +154,30 @@ const ContactSection = () => {
               className="mt-8"
             >
               <div className="aspect-video bg-muted rounded-2xl overflow-hidden shadow-large">
-                <div className="w-full h-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
-                  <div className="text-center">
-                    <MapPin className="h-12 w-12 text-primary mx-auto mb-4" />
-                    <h4 className="text-xl font-semibold text-foreground mb-2">
-                      Our Location
-                    </h4>
-                    <p className="text-muted-foreground">
-                      Interactive map will be displayed here
-                    </p>
+                {mapEmbedUrl ? (
+                  <iframe
+                    src={mapEmbedUrl}
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Company Location"
+                  />
+                ) : (
+                  <div className="w-full h-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
+                    <div className="text-center">
+                      <MapPin className="h-12 w-12 text-primary mx-auto mb-4" />
+                      <h4 className="text-xl font-semibold text-foreground mb-2">
+                        Our Location
+                      </h4>
+                      <p className="text-muted-foreground">
+                        Add Google Maps embed URL to display map here
+                      </p>
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
             </motion.div>
           </motion.div>
