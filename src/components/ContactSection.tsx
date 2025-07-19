@@ -13,19 +13,19 @@ const contactInfo = [
   {
     icon: Phone,
     label: "Phone",
-    value: "+1 (555) 123-4567",
+    value: "+98 999 109 9779",
     color: "text-primary"
   },
   {
     icon: Mail,
     label: "Email",
-    value: "contact@techcorp.com",
+    value: "astramenteteam@gmail.com",
     color: "text-secondary"
   },
   {
     icon: MapPin,
     label: "Address",
-    value: "123 Tech Street, Silicon Valley, CA 94043",
+    value: "Tehran Iran, Azadi Street, Enghelab Square, Aftab Building ,11th floor , Unit 1109",
     color: "text-primary"
   },
   {

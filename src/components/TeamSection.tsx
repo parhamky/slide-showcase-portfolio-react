@@ -5,18 +5,18 @@ import { ArrowRight, Linkedin, Twitter, Github } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { useNavigate } from 'react-router-dom';
-import teamMember1 from '@/assets/team-member-1.jpg';
-import teamMember2 from '@/assets/team-member-2.jpg';
-import teamMember3 from '@/assets/team-member-3.jpg';
+import teamMember1 from '@/assets/photo_2025-07-19_18-55-30.jpg';
+import teamMember2 from '@/assets/photo_2025-07-19_19-33-32.jpg';
+import teamMember3 from '@/assets/photo_2025-07-19_18-55-59.jpg';
 import teamMember4 from '@/assets/team-member-4.jpg';
 
 const teamMembers = [
   {
     id: 1,
-    name: "Alex Johnson",
-    role: "CEO & Co-Founder",
+    name:"Parham Keyhani",
+    role: "BackEnd Developer",
     image: teamMember1,
-    description: "Visionary leader with 15+ years in tech innovation and strategic business development.",
+    description: "Backend Developer with a passion for building robust and maintainable server-side systems. With hands-on experience in Go and Django, capable for solving complex problems and optimizing backend performance",
     social: {
       linkedin: "#",
       twitter: "#",
@@ -25,10 +25,10 @@ const teamMembers = [
   },
   {
     id: 2,
-    name: "Sarah Chen",
-    role: "CTO & Co-Founder",
+    name: "Nadia HamedSalman",
+    role: "CEO & Co-Founder",
     image: teamMember2,
-    description: "Technical architect specializing in AI/ML and scalable cloud infrastructure solutions.",
+    description: "Agile runs smooth when she’s in the loop — with real experience leading big projects, scaling teams, and keeping things human. Sprints flow with Jira, syncs land on Slack, and strategy lives in Notion.",
     social: {
       linkedin: "#",
       twitter: "#",
@@ -37,7 +37,7 @@ const teamMembers = [
   },
   {
     id: 3,
-    name: "Michael Rodriguez",
+    name: "Avesta Safarian",
     role: "Lead Software Engineer",
     image: teamMember3,
     description: "Full-stack developer with expertise in modern web technologies and system architecture.",
@@ -49,10 +49,10 @@ const teamMembers = [
   },
   {
     id: 4,
-    name: "Emily Parker",
+    name: "Mobin Ghorbani",
     role: "Head of Design",
     image: teamMember4,
-    description: "Creative designer focused on user experience and innovative digital product design.",
+    description: "Code gets written, teams get led, and web apps get built — all with a mix of Go, Spring, Django, JS and its family and just the right amount of caffeine. Full-stack focus with a backend twist, and always aiming for clean code and a solid user experience.",
     social: {
       linkedin: "#",
       twitter: "#",

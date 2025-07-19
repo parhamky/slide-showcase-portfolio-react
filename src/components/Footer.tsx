@@ -73,21 +73,21 @@ const Footer = () => {
                 <MapPin className="h-5 w-5 mt-0.5 text-secondary" />
                 <div>
                   <p className="text-primary-foreground/80 text-sm">
-                    123 Tech Street<br />
-                    Silicon Valley, CA 94043<br />
-                    United States
+                    Azadi Street<br />
+                    Enghelab Square, Aftab Building<br />
+                    Tehran, Iran
                   </p>
                 </div>
               </div>
               
               <div className="flex items-center space-x-3">
                 <Phone className="h-5 w-5 text-secondary" />
-                <p className="text-primary-foreground/80">+1 (555) 123-4567</p>
+                <p className="text-primary-foreground/80">+98 999 109 9779</p>
               </div>
               
               <div className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 text-secondary" />
-                <p className="text-primary-foreground/80">contact@techcorp.com</p>
+                <p className="text-primary-foreground/80">astramenteteam@gmail.com</p>
               </div>
             </div>
           </div>

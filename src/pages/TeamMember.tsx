@@ -4,9 +4,9 @@ import { ArrowLeft, Download, Linkedin, Twitter, Github, Mail, MapPin, Calendar 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import teamMember1 from '@/assets/team-member-1.jpg';
-import teamMember2 from '@/assets/team-member-2.jpg';
-import teamMember3 from '@/assets/team-member-3.jpg';
+import teamMember1 from '@/assets/photo_2025-07-19_18-55-30.jpg';
+import teamMember2 from '@/assets/photo_2025-07-19_18-55-54.jpg';
+import teamMember3 from '@/assets/photo_2025-07-19_18-55-59.jpg';
 import teamMember4 from '@/assets/team-member-4.jpg';
 
 const teamMembers = [
