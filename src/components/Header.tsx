@@ -23,12 +23,7 @@ const Header = () => {
   };
 
   return (
-    <header 
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        scrolled 
-          ? 'bg-background/80 backdrop-blur-md shadow-medium' 
-          : 'bg-transparent'
-      }`}
+    <header className="bg-background/95 backdrop-blur-md shadow-medium border-b border-border"
     >
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">

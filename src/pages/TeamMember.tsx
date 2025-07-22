@@ -373,25 +373,6 @@ const TeamMember = () => {
               </Card>
             </motion.div>
 
-            {/* Download Resume */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-            >
-              <Card>
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-bold text-foreground mb-4">Resume</h3>
-                  <p className="text-muted-foreground mb-4">
-                    Download {member.name.split(' ')[0]}'s complete resume for detailed information about their background and experience.
-                  </p>
-                  <Button className="w-full bg-primary hover:bg-primary-dark">
-                    <Download className="mr-2 h-4 w-4" />
-                    Download Resume
-                  </Button>
-                </CardContent>
-              </Card>
-            </motion.div>
 
             {/* Contact */}
             <motion.div

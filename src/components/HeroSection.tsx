@@ -3,7 +3,10 @@ import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Play } from 'lucide-react';
-import heroImage from '@/assets/hero-image.jpg';
+import heroAI from '@/assets/hero-ai-analytics.jpg';
+import heroIoT from '@/assets/hero-iot-ecosystem.jpg';
+import heroBlockchain from '@/assets/hero-blockchain.jpg';
+import heroCloud from '@/assets/hero-cloud-infrastructure.jpg';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -16,28 +19,28 @@ const projects = [
     id: 1,
     title: "AI-Powered Analytics Platform",
     description: "Revolutionary data analytics platform that transforms complex datasets into actionable insights using advanced machine learning algorithms.",
-    image: heroImage,
+    image: heroAI,
     category: "AI & Machine Learning"
   },
   {
     id: 2,
     title: "Smart IoT Ecosystem",
     description: "Comprehensive IoT solution connecting smart devices and sensors to create intelligent, automated environments for businesses.",
-    image: heroImage,
+    image: heroIoT,
     category: "IoT Solutions"
   },
   {
     id: 3,
     title: "Blockchain Financial Platform",
     description: "Secure, decentralized financial platform enabling transparent transactions and smart contract automation for enterprises.",
-    image: heroImage,
+    image: heroBlockchain,
     category: "Blockchain"
   },
   {
     id: 4,
     title: "Cloud Infrastructure Suite",
     description: "Scalable cloud infrastructure solutions providing robust, secure, and efficient computing resources for growing businesses.",
-    image: heroImage,
+    image: heroCloud,
     category: "Cloud Computing"
   }
 ];
@@ -114,7 +117,7 @@ const HeroSection = () => {
                           variant="outline" 
                           size="lg"
                           onClick={() => scrollToSection('about')}
-                          className="border-2 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground hover:text-primary font-semibold px-8 py-6 text-lg rounded-xl transition-all duration-300"
+                          className="border-2 border-white/50 text-white hover:bg-white hover:text-primary font-semibold px-8 py-6 text-lg rounded-xl transition-all duration-300"
                         >
                           <Play className="mr-2 h-5 w-5" />
                           Watch Demo

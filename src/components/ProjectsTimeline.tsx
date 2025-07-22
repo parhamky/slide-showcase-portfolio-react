@@ -5,6 +5,8 @@ import { Calendar, ExternalLink, Github } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import upcomingQuantum from '@/assets/upcoming-quantum.jpg';
+import upcomingNeural from '@/assets/upcoming-neural.jpg';
 
 const projects = [
   {
@@ -60,7 +62,8 @@ const upcomingProjects = [
     description: "Revolutionary quantum computing interface that will democratize access to quantum algorithms for businesses.",
     technologies: ["Quantum", "Python", "Cloud"],
     date: "Q2 2025",
-    status: "upcoming"
+    status: "upcoming",
+    image: upcomingQuantum
   },
   {
     id: 6,
@@ -68,7 +71,8 @@ const upcomingProjects = [
     description: "Advanced neural network optimization tool for improving machine learning model performance and efficiency.",
     technologies: ["AI/ML", "Python", "CUDA"],
     date: "Q3 2025",
-    status: "upcoming"
+    status: "upcoming",
+    image: upcomingNeural
   }
 ];
 
@@ -179,7 +183,15 @@ const ProjectsTimeline = () => {
                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.6, delay: 1.2 + index * 0.2 }}
               >
-                <Card className="h-full border-2 border-dashed border-primary/30 bg-gradient-subtle hover:shadow-large transition-all duration-300">
+                <Card className="h-full border-2 border-dashed border-primary/30 bg-gradient-subtle hover:shadow-large transition-all duration-300 overflow-hidden">
+                  <div className="relative h-48">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+                  </div>
                   <CardContent className="p-8">
                     <div className="flex items-center gap-2 mb-4">
                       <Calendar className="h-5 w-5 text-secondary" />
