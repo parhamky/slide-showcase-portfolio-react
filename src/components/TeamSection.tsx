@@ -96,9 +96,10 @@ const TeamSection = () => {
               initial={{ opacity: 0, y: 50 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.2 }}
+              className="h-full"
             >
-              <Card className="overflow-hidden shadow-large hover:shadow-extra transition-all duration-300 hover:-translate-y-2 group">
-                <CardContent className="p-0">
+              <Card className="overflow-hidden shadow-large hover:shadow-extra transition-all duration-300 hover:-translate-y-2 group h-full flex flex-col">
+                <CardContent className="p-0 flex flex-col h-full">
                   {/* Image */}
                   <div className="relative overflow-hidden">
                     <img
@@ -124,7 +125,7 @@ const TeamSection = () => {
                   </div>
 
                   {/* Content */}
-                  <div className="p-6">
+                  <div className="p-6 flex-1 flex flex-col">
                     <h3 className="text-xl font-bold text-foreground mb-2">
                       {member.name}
                     </h3>
@@ -133,7 +134,7 @@ const TeamSection = () => {
                       {member.role}
                     </p>
                     
-                    <p className="text-muted-foreground text-sm leading-relaxed mb-6">
+                    <p className="text-muted-foreground text-sm leading-relaxed mb-6 flex-1">
                       {member.description}
                     </p>
 
