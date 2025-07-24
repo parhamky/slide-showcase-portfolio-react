@@ -6,14 +6,29 @@ import logo from '@/assets/logo.jpg';
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [headerVisible, setHeaderVisible] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      const currentScrollY = window.scrollY;
+      
+      setScrolled(currentScrollY > 50);
+      
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Scrolling down - hide header
+        setHeaderVisible(false);
+      } else if (currentScrollY < lastScrollY) {
+        // Scrolling up - show header
+        setHeaderVisible(true);
+      }
+      
+      setLastScrollY(currentScrollY);
     };
+    
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [lastScrollY]);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -24,7 +39,9 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed top-4 left-4 right-4 z-50 bg-background/95 backdrop-blur-md shadow-elegant border border-border rounded-2xl transition-all duration-300 hover:shadow-glow hover:bg-background/98"
+    <header className={`fixed left-4 right-4 z-50 bg-background/95 backdrop-blur-md shadow-elegant border border-border rounded-2xl transition-all duration-300 hover:shadow-glow hover:bg-background/98 ${
+      headerVisible ? 'top-4 translate-y-0' : '-top-20 -translate-y-full'
+    }`}
     >
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
