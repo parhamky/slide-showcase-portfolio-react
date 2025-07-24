@@ -1,5 +1,6 @@
 import { MapPin, Phone, Mail, Linkedin, Twitter, Github, Instagram } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import logo from '@/assets/logo.jpg';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -17,9 +18,14 @@ const Footer = () => {
         <div className="grid md:grid-cols-3 gap-8">
           {/* Company Info */}
           <div>
-            <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-primary-foreground to-secondary-foreground bg-clip-text text-transparent">
+            <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-primary-foreground to-secondary-foreground bg-clip-text text-transparent">
               TechCorp
             </h3>
+            <img 
+              src={logo} 
+              alt="TechCorp Logo" 
+              className="w-16 h-16 rounded-lg object-cover"
+            />
           </div>
 
           {/* Quick Links */}

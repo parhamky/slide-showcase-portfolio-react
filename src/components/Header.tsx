@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import logo from '@/assets/logo.jpg';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,8 +29,15 @@ const Header = () => {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Company Logo/Name */}
-          <div className="text-2xl font-bold bg-gradient-hero bg-clip-text text-transparent">
-            TechCorp
+          <div className="flex items-center space-x-3">
+            <img 
+              src={logo} 
+              alt="TechCorp Logo" 
+              className="w-8 h-8 rounded-md object-cover"
+            />
+            <div className="text-2xl font-bold bg-gradient-hero bg-clip-text text-transparent">
+              TechCorp
+            </div>
           </div>
 
           {/* Desktop Navigation */}
