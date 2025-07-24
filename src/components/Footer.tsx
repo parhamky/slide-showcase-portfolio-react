@@ -13,51 +13,13 @@ const Footer = () => {
 
   return (
     <footer className="bg-gradient-to-br from-primary via-primary-dark to-secondary text-primary-foreground">
-      <div className="container mx-auto px-4 py-16">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="container mx-auto px-4 py-12">
+        <div className="grid md:grid-cols-3 gap-8">
           {/* Company Info */}
-          <div className="space-y-6">
-            <div>
-              <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-primary-foreground to-secondary-foreground bg-clip-text text-transparent">
-                TechCorp
-              </h3>
-              <p className="text-primary-foreground/80 leading-relaxed">
-                Innovating for a better tomorrow. We create cutting-edge technology 
-                solutions that transform businesses and empower communities worldwide.
-              </p>
-            </div>
-            
-            {/* Social Links */}
-            <div className="flex space-x-4">
-              <Button 
-                size="sm" 
-                variant="ghost" 
-                className="bg-primary-foreground/10 hover:bg-primary-foreground/20 text-primary-foreground rounded-full w-10 h-10 p-0"
-              >
-                <Linkedin className="h-5 w-5" />
-              </Button>
-              <Button 
-                size="sm" 
-                variant="ghost" 
-                className="bg-primary-foreground/10 hover:bg-primary-foreground/20 text-primary-foreground rounded-full w-10 h-10 p-0"
-              >
-                <Twitter className="h-5 w-5" />
-              </Button>
-              <Button 
-                size="sm" 
-                variant="ghost" 
-                className="bg-primary-foreground/10 hover:bg-primary-foreground/20 text-primary-foreground rounded-full w-10 h-10 p-0"
-              >
-                <Github className="h-5 w-5" />
-              </Button>
-              <Button 
-                size="sm" 
-                variant="ghost" 
-                className="bg-primary-foreground/10 hover:bg-primary-foreground/20 text-primary-foreground rounded-full w-10 h-10 p-0"
-              >
-                <Instagram className="h-5 w-5" />
-              </Button>
-            </div>
+          <div>
+            <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-primary-foreground to-secondary-foreground bg-clip-text text-transparent">
+              TechCorp
+            </h3>
           </div>
 
           {/* Quick Links */}
@@ -95,19 +57,6 @@ const Footer = () => {
                 Contact
               </button>
             </nav>
-          </div>
-
-          {/* Services */}
-          <div>
-            <h4 className="text-lg font-semibold mb-6">Services</h4>
-            <div className="space-y-3 text-primary-foreground/80">
-              <p>AI & Machine Learning</p>
-              <p>Cloud Computing</p>
-              <p>Blockchain Development</p>
-              <p>IoT Solutions</p>
-              <p>Web Development</p>
-              <p>Mobile Applications</p>
-            </div>
           </div>
 
           {/* Contact Info */}
