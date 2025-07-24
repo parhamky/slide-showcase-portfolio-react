@@ -151,30 +151,6 @@ const TeamSection = () => {
             </motion.div>
           ))}
         </div>
-
-        {/* Call to Action */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 1 }}
-          className="text-center mt-16"
-        >
-          <div className="bg-gradient-hero rounded-2xl p-8 md:p-12 text-center">
-            <h3 className="text-3xl font-bold text-primary-foreground mb-4">
-              Want to Join Our Team?
-            </h3>
-            <p className="text-primary-foreground/90 text-lg mb-8 max-w-2xl mx-auto">
-              We're always looking for talented individuals who share our passion for innovation 
-              and want to make a difference in the tech world.
-            </p>
-            <Button 
-              size="lg"
-              className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 font-semibold px-8 py-6 text-lg rounded-xl transition-all duration-300 hover:scale-105"
-            >
-              View Open Positions
-            </Button>
-          </div>
-        </motion.div>
       </div>
     </section>
   );
