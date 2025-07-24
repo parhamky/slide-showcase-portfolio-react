@@ -24,7 +24,7 @@ const Footer = () => {
             <img 
               src={logo} 
               alt="TechCorp Logo" 
-              className="w-16 h-16 rounded-lg object-cover"
+              className="w-24 h-24 rounded-lg object-cover"
             />
           </div>
 
