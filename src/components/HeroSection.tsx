@@ -112,16 +112,6 @@ const HeroSection = () => {
                           Explore Projects
                           <ArrowRight className="ml-2 h-5 w-5" />
                         </Button>
-                        
-                        <Button 
-                          variant="outline" 
-                          size="lg"
-                          onClick={() => scrollToSection('about')}
-                          className="border-2 border-white/50 text-white hover:bg-white hover:text-primary font-semibold px-8 py-6 text-lg rounded-xl transition-all duration-300"
-                        >
-                          <Play className="mr-2 h-5 w-5" />
-                          Watch Demo
-                        </Button>
                       </div>
                     </motion.div>
                   </div>
