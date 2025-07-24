@@ -23,7 +23,7 @@ const Footer = () => {
             </h3>
             <img 
               src={logo} 
-              alt="TechCorp Logo" 
+              alt="Astramente Logo" 
               className="w-24 h-24 rounded-lg object-cover"
             />
           </div>
