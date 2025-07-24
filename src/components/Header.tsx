@@ -24,7 +24,7 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-background/95 backdrop-blur-md shadow-medium border-b border-border"
+    <header className="fixed top-4 left-4 right-4 z-50 bg-background/95 backdrop-blur-md shadow-elegant border border-border rounded-2xl transition-all duration-300 hover:shadow-glow hover:bg-background/98"
     >
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
