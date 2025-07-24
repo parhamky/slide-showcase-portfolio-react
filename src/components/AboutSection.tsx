@@ -33,8 +33,8 @@ const AboutSection = ({ videoSrc }: AboutSectionProps) => {
             About Our Company
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            We are a forward-thinking technology company dedicated to creating innovative solutions 
-            that transform businesses and empower communities worldwide.
+            At Astrament, we are driven by creativity, innovation, and a passion for turning ideas into real-world solutions. As a team of young engineers and problem-solvers, we specialize in designing smart systems that combine technology with everyday life.
+Our mission is to challenge the ordinary and create products that are both functional and inspiring. From concept to execution, we believe in building with purpose—always aiming to push boundaries and shape a smarter future.
           </p>
         </motion.div>
 

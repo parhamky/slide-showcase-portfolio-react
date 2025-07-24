@@ -17,29 +17,29 @@ import 'swiper/css/effect-fade';
 const projects = [
   {
     id: 1,
-    title: "AI-Powered Analytics Platform",
-    description: "Revolutionary data analytics platform that transforms complex datasets into actionable insights using advanced machine learning algorithms.",
+    title: "Smart Systems for a Creative Tomorrow",
+    description: "Building intelligent solutions that merge engineering, design, and user experience to reshape everyday interactions.",
     image: heroAI,
     category: "AI & Machine Learning"
   },
   {
     id: 2,
-    title: "Smart IoT Ecosystem",
-    description: "Comprehensive IoT solution connecting smart devices and sensors to create intelligent, automated environments for businesses.",
+    title: "Innovative Product Design & Engineering",
+    description: "From concept to prototype, we turn bold ideas into tangible, smart products ready for real-world impact.",
     image: heroIoT,
     category: "IoT Solutions"
   },
   {
     id: 3,
-    title: "Blockchain Financial Platform",
-    description: "Secure, decentralized financial platform enabling transparent transactions and smart contract automation for enterprises.",
+    title: "Next-Gen Automation, Designed for People",
+    description: "We create human-centered automation systems that bring efficiency, accessibility, and elegance to modern life.",
     image: heroBlockchain,
     category: "Blockchain"
   },
   {
     id: 4,
-    title: "Cloud Infrastructure Suite",
-    description: "Scalable cloud infrastructure solutions providing robust, secure, and efficient computing resources for growing businesses.",
+    title: " Future-Driven Hardware & Software Solutions",
+    description: "We design and develop advanced devices powered by smart technology for a wide range of industries.",
     image: heroCloud,
     category: "Cloud Computing"
   }
