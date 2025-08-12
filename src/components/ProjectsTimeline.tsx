@@ -99,12 +99,15 @@ const ProjectsTimeline = () => {
           </p>
         </motion.div>
 
-        {/* Completed Projects Timeline */}
+        {/* Enhanced Timeline */}
         <div className="relative">
-          {/* Timeline Line */}
-          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-primary via-secondary to-primary transform md:-translate-x-0.5 rounded-full shadow-glow"></div>
+          {/* Main Timeline Track */}
+          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-2 bg-gradient-to-b from-primary/20 via-secondary/30 to-primary/20 transform md:-translate-x-1 rounded-full"></div>
+          
+          {/* Animated Pulse Line */}
+          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-secondary to-primary transform md:-translate-x-0.25 rounded-full animate-pulse shadow-glow"></div>
 
-          <div className="space-y-16">
+          <div className="space-y-20">
             {projects.map((project, index) => (
               <motion.div
                 key={project.id}
@@ -113,51 +116,77 @@ const ProjectsTimeline = () => {
                 transition={{ duration: 0.8, delay: index * 0.2 }}
                 className={`relative flex items-center ${
                   index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                } flex-col md:gap-8`}
+                } flex-col md:gap-12`}
               >
-                {/* Timeline Dot */}
-                <div className="absolute left-4 md:left-1/2 w-6 h-6 bg-gradient-to-r from-primary to-secondary rounded-full transform md:-translate-x-1/2 border-4 border-background shadow-glow animate-pulse"></div>
+                {/* Enhanced Timeline Node */}
+                <div className="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 z-10">
+                  {/* Outer Glow Ring */}
+                  <div className="w-12 h-12 bg-gradient-to-r from-primary/30 to-secondary/30 rounded-full animate-pulse"></div>
+                  {/* Main Node */}
+                  <div className="absolute inset-2 w-8 h-8 bg-gradient-to-r from-primary to-secondary rounded-full border-4 border-background shadow-xl">
+                    {/* Inner Dot */}
+                    <div className="absolute inset-2 w-4 h-4 bg-background rounded-full"></div>
+                  </div>
+                  {/* Year Badge */}
+                  <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-primary to-secondary text-primary-foreground px-3 py-1 rounded-full text-sm font-bold shadow-lg">
+                    {project.date}
+                  </div>
+                </div>
 
-                {/* Content */}
-                <div className={`w-full md:w-1/2 ml-12 md:ml-0 ${index % 2 === 0 ? 'md:pr-8' : 'md:pl-8'}`}>
-                  <Card className="overflow-hidden shadow-xl hover:shadow-glow transition-all duration-500 hover:-translate-y-3 hover:scale-105 bg-gradient-to-br from-card to-card/50 backdrop-blur-sm border border-primary/20">
-                    <CardContent className="p-8">
-                      <div className="flex items-center gap-2 mb-4">
-                        <Calendar className="h-5 w-5 text-primary" />
-                        <span className="text-primary font-semibold">{project.date}</span>
-                        <Badge variant="secondary" className="ml-auto">
-                          {project.status}
-                        </Badge>
-                      </div>
+                {/* Connection Line to Card */}
+                <div className={`absolute ${
+                  index % 2 === 0 
+                    ? 'left-20 md:left-1/2 md:right-1/2 md:w-8' 
+                    : 'left-20 md:right-1/2 md:left-1/2 md:w-8'
+                } top-1/2 h-0.5 bg-gradient-to-r from-primary/50 to-secondary/50 hidden md:block`}></div>
 
-                      <h3 className="text-2xl font-bold text-foreground mb-4">
-                        {project.title}
-                      </h3>
-
-                      <p className="text-muted-foreground mb-6 leading-relaxed">
-                        {project.description}
-                      </p>
-
-                      <div className="flex flex-wrap gap-2 mb-6">
-                        {project.technologies.map((tech, techIndex) => (
-                          <Badge key={techIndex} variant="outline" className="px-3 py-1">
-                            {tech}
+                {/* Enhanced Content Card */}
+                <div className={`w-full md:w-5/12 ml-20 md:ml-0 ${index % 2 === 0 ? 'md:pr-12' : 'md:pl-12'}`}>
+                  <div className="relative">
+                    {/* Card Arrow */}
+                    <div className={`absolute top-8 ${
+                      index % 2 === 0 ? 'md:-right-3' : 'md:-left-3'
+                    } hidden md:block w-6 h-6 bg-card border border-primary/20 transform rotate-45 shadow-lg`}></div>
+                    
+                    <Card className="overflow-hidden shadow-2xl hover:shadow-glow transition-all duration-700 hover:-translate-y-4 hover:scale-105 bg-gradient-to-br from-card via-card/95 to-primary/5 backdrop-blur-sm border-2 border-primary/20 hover:border-primary/40">
+                      <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-primary/5"></div>
+                      <CardContent className="p-8 relative z-10">
+                        <div className="flex items-center gap-3 mb-6">
+                          <div className="w-3 h-3 bg-gradient-to-r from-primary to-secondary rounded-full animate-pulse"></div>
+                          <Badge variant="secondary" className="bg-gradient-to-r from-secondary/20 to-primary/20 text-secondary border-secondary/30">
+                            {project.status}
                           </Badge>
-                        ))}
-                      </div>
+                        </div>
 
-                      <div className="flex gap-4">
-                        <Button variant="outline" size="sm" className="flex items-center gap-2">
-                          <ExternalLink className="h-4 w-4" />
-                          View Project
-                        </Button>
-                        <Button variant="outline" size="sm" className="flex items-center gap-2">
-                          <Github className="h-4 w-4" />
-                          Source Code
-                        </Button>
-                      </div>
-                    </CardContent>
-                  </Card>
+                        <h3 className="text-2xl font-bold text-foreground mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                          {project.title}
+                        </h3>
+
+                        <p className="text-muted-foreground mb-6 leading-relaxed">
+                          {project.description}
+                        </p>
+
+                        <div className="flex flex-wrap gap-2 mb-6">
+                          {project.technologies.map((tech, techIndex) => (
+                            <Badge key={techIndex} variant="outline" className="px-3 py-1 border-primary/30 hover:bg-primary/10 transition-colors">
+                              {tech}
+                            </Badge>
+                          ))}
+                        </div>
+
+                        <div className="flex gap-4">
+                          <Button variant="outline" size="sm" className="flex items-center gap-2 border-primary/30 hover:bg-primary/10 hover:border-primary/50 transition-all duration-300">
+                            <ExternalLink className="h-4 w-4" />
+                            View Project
+                          </Button>
+                          <Button variant="outline" size="sm" className="flex items-center gap-2 border-secondary/30 hover:bg-secondary/10 hover:border-secondary/50 transition-all duration-300">
+                            <Github className="h-4 w-4" />
+                            Source Code
+                          </Button>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
                 </div>
               </motion.div>
             ))}
