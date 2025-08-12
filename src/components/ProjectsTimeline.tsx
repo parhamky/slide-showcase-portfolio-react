@@ -102,7 +102,7 @@ const ProjectsTimeline = () => {
         {/* Completed Projects Timeline */}
         <div className="relative">
           {/* Timeline Line */}
-          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-secondary to-primary transform md:-translate-x-0.5"></div>
+          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-primary via-secondary to-primary transform md:-translate-x-0.5 rounded-full shadow-glow"></div>
 
           <div className="space-y-16">
             {projects.map((project, index) => (
@@ -116,11 +116,11 @@ const ProjectsTimeline = () => {
                 } flex-col md:gap-8`}
               >
                 {/* Timeline Dot */}
-                <div className="absolute left-4 md:left-1/2 w-4 h-4 bg-primary rounded-full transform md:-translate-x-1/2 border-4 border-background shadow-glow"></div>
+                <div className="absolute left-4 md:left-1/2 w-6 h-6 bg-gradient-to-r from-primary to-secondary rounded-full transform md:-translate-x-1/2 border-4 border-background shadow-glow animate-pulse"></div>
 
                 {/* Content */}
                 <div className={`w-full md:w-1/2 ml-12 md:ml-0 ${index % 2 === 0 ? 'md:pr-8' : 'md:pl-8'}`}>
-                  <Card className="overflow-hidden shadow-large hover:shadow-extra transition-all duration-300 hover:-translate-y-2">
+                  <Card className="overflow-hidden shadow-xl hover:shadow-glow transition-all duration-500 hover:-translate-y-3 hover:scale-105 bg-gradient-to-br from-card to-card/50 backdrop-blur-sm border border-primary/20">
                     <CardContent className="p-8">
                       <div className="flex items-center gap-2 mb-4">
                         <Calendar className="h-5 w-5 text-primary" />
