@@ -101,10 +101,59 @@ const ProjectsTimeline = () => {
 
         {/* Completed Projects Timeline */}
         <div className="relative">
-          {/* Timeline Line */}
-          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-2 bg-gradient-to-b from-primary via-secondary to-primary transform md:-translate-x-0.5 shadow-2xl">
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse"></div>
-            <div className="absolute left-0 top-0 w-full h-full bg-gradient-to-b from-primary/80 via-secondary/80 to-primary/80 rounded-full blur-sm"></div>
+          {/* Timeline Line - Curved and Angular */}
+          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-8 transform md:-translate-x-1/2">
+            <svg 
+              className="w-full h-full" 
+              viewBox="0 0 32 800" 
+              preserveAspectRatio="none"
+              style={{ height: '100%' }}
+            >
+              <defs>
+                <linearGradient id="timelineGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="hsl(var(--primary))" />
+                  <stop offset="30%" stopColor="hsl(var(--secondary))" />
+                  <stop offset="70%" stopColor="hsl(var(--primary))" />
+                  <stop offset="100%" stopColor="hsl(var(--secondary))" />
+                </linearGradient>
+                <filter id="glow">
+                  <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                  <feMerge> 
+                    <feMergeNode in="coloredBlur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
+              </defs>
+              <path
+                d="M16 0 
+                   C16 50, 8 80, 24 120
+                   C32 160, 8 190, 16 230
+                   C16 270, 24 300, 8 340
+                   C0 380, 24 410, 16 450
+                   C16 490, 8 520, 24 560
+                   C32 600, 8 630, 16 670
+                   C16 710, 24 740, 16 800"
+                stroke="url(#timelineGradient)"
+                strokeWidth="3"
+                fill="none"
+                filter="url(#glow)"
+                className="animate-pulse"
+              />
+              <path
+                d="M16 0 
+                   C16 50, 8 80, 24 120
+                   C32 160, 8 190, 16 230
+                   C16 270, 24 300, 8 340
+                   C0 380, 24 410, 16 450
+                   C16 490, 8 520, 24 560
+                   C32 600, 8 630, 16 670
+                   C16 710, 24 740, 16 800"
+                stroke="hsl(var(--primary) / 0.3)"
+                strokeWidth="8"
+                fill="none"
+                className="blur-sm"
+              />
+            </svg>
           </div>
 
           <div className="space-y-16">
