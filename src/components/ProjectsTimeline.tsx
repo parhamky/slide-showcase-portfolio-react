@@ -102,7 +102,10 @@ const ProjectsTimeline = () => {
         {/* Completed Projects Timeline */}
         <div className="relative">
           {/* Timeline Line */}
-          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-primary via-secondary to-primary transform md:-translate-x-0.5 rounded-full shadow-glow"></div>
+          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-2 bg-gradient-to-b from-primary via-secondary to-primary transform md:-translate-x-0.5 shadow-2xl">
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse"></div>
+            <div className="absolute left-0 top-0 w-full h-full bg-gradient-to-b from-primary/80 via-secondary/80 to-primary/80 rounded-full blur-sm"></div>
+          </div>
 
           <div className="space-y-16">
             {projects.map((project, index) => (
