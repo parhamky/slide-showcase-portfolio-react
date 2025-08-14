@@ -81,6 +81,7 @@ const ProjectsTimeline = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isScrolling, setIsScrolling] = useState(false);
+  const [showAnimations, setShowAnimations] = useState(true);
 
   // Group projects by year
   const projectsByYear = [...projects, ...upcomingProjects.map(p => ({ ...p, status: 'upcoming', link: '#', github: '#' }))]
@@ -93,16 +94,27 @@ const ProjectsTimeline = () => {
 
   const yearSlides = Object.keys(projectsByYear).sort((a, b) => parseInt(b) - parseInt(a));
 
-  // Scroll-based navigation with smooth behavior
+  // Scroll-based navigation with fast scroll detection
   useEffect(() => {
     let ticking = false;
     let lastWheelTime = 0;
-    const wheelThrottle = 800; // Much slower throttle for smoother control
+    let wheelEvents: number[] = [];
+    const wheelThrottle = 200; // Faster response for detection
+    const fastScrollThreshold = 3; // Number of rapid events to consider "fast"
 
     const handleWheel = (e: WheelEvent) => {
       if (!ref.current) return;
 
       const now = Date.now();
+      
+      // Track wheel events for speed detection
+      wheelEvents.push(now);
+      wheelEvents = wheelEvents.filter(time => now - time < 500); // Keep events from last 500ms
+      
+      // Determine if scrolling fast
+      const isFastScrolling = wheelEvents.length >= fastScrollThreshold;
+      setShowAnimations(!isFastScrolling);
+      
       if (now - lastWheelTime < wheelThrottle) return;
       lastWheelTime = now;
 
@@ -143,6 +155,7 @@ const ProjectsTimeline = () => {
           // Reset scrolling state when leaving section
           if (rect.bottom < 0 || rect.top > windowHeight) {
             setIsScrolling(false);
+            setShowAnimations(true); // Reset animations when leaving section
           }
           
           ticking = false;
@@ -151,13 +164,22 @@ const ProjectsTimeline = () => {
       }
     };
 
+    // Reset animation state after a delay
+    const resetAnimations = () => {
+      setTimeout(() => {
+        setShowAnimations(true);
+      }, 1000);
+    };
+
     // Use passive listeners for better performance
     window.addEventListener('wheel', handleWheel, { passive: false });
     window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('wheel', resetAnimations, { passive: true });
     
     return () => {
       window.removeEventListener('wheel', handleWheel);
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('wheel', resetAnimations);
     };
   }, [currentSlide, yearSlides.length]);
 
@@ -237,31 +259,31 @@ const ProjectsTimeline = () => {
           <div className="overflow-hidden">
             <motion.div
               key={currentSlide}
-              initial={{ opacity: 0, y: 100, scale: 0.95 }}
+              initial={showAnimations ? { opacity: 0, y: 100, scale: 0.95 } : { opacity: 1, y: 0, scale: 1 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -100, scale: 0.95 }}
-              transition={{ 
+              exit={showAnimations ? { opacity: 0, y: -100, scale: 0.95 } : { opacity: 1, y: 0, scale: 1 }}
+              transition={showAnimations ? { 
                 duration: 1.2, 
                 ease: [0.25, 0.46, 0.45, 0.94],
                 type: "spring",
                 stiffness: 100,
                 damping: 20
-              }}
+              } : { duration: 0 }}
               className="grid gap-8"
             >
               {projectsByYear[yearSlides[currentSlide]]?.map((project, index) => (
                 <motion.div
                   key={project.id}
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100, scale: 0.9 }}
+                  initial={showAnimations ? { opacity: 0, x: index % 2 === 0 ? -100 : 100, scale: 0.9 } : { opacity: 1, x: 0, scale: 1 }}
                   animate={{ opacity: 1, x: 0, scale: 1 }}
-                  transition={{ 
+                  transition={showAnimations ? { 
                     duration: 1.0, 
                     delay: index * 0.3,
                     ease: [0.25, 0.46, 0.45, 0.94],
                     type: "spring",
                     stiffness: 80,
                     damping: 25
-                  }}
+                  } : { duration: 0 }}
                 >
                   <Card className="overflow-hidden shadow-xl hover:shadow-glow transition-all duration-500 hover:-translate-y-2 bg-gradient-to-br from-card to-card/50 backdrop-blur-sm border border-primary/20">
                     <CardContent className="p-8">
