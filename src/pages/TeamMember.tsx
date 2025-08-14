@@ -12,15 +12,15 @@ import teamMember4 from '@/assets/team-member-4.jpg';
 const teamMembers = [
   {
     id: 1,
-    name: "Alex Johnson",
-    role: "CEO & Co-Founder",
+    name: "Parham Keyhani",
+    role: "Software Engineer",
     image: teamMember1,
-    location: "San Francisco, CA",
-    joinDate: "January 2019",
-    email: "alex.johnson@techcorp.com",
-    description: "Visionary leader with 15+ years in tech innovation and strategic business development.",
+    location: "Tehran, Iran",
+    joinDate: "October 2024",
+    email: "parham.8484@gmail.com",
+    description: "Backend Developer with a passion for building robust and maintainable server-side systems. With hands-on experience in Go and Django, capable for solving complex problems and optimizing backend performance",
     fullBio: "Alex Johnson is a seasoned technology executive with over 15 years of experience in driving innovation and building successful tech companies. Before co-founding TechCorp, Alex held senior leadership positions at several Fortune 500 companies, where he spearheaded digital transformation initiatives and led cross-functional teams to deliver cutting-edge solutions. His passion for emerging technologies and strategic vision has been instrumental in positioning TechCorp as a leader in the industry. Alex holds an MBA from Stanford Graduate School of Business and a Bachelor's degree in Computer Science from MIT.",
-    skills: ["Strategic Leadership", "Business Development", "Innovation Management", "Digital Transformation", "Team Building"],
+    skills: ["System design", "Software archituc", "Innovation Management", "Digital Transformation", "Team Building"],
     experience: [
       {
         company: "TechCorp",

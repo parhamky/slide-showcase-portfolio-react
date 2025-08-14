@@ -8,13 +8,13 @@ import { useNavigate } from 'react-router-dom';
 import teamMember1 from '@/assets/photo_2025-07-19_18-55-30.jpg';
 import teamMember2 from '@/assets/photo_2025-07-19_19-33-32.jpg';
 import teamMember3 from '@/assets/photo_2025-07-19_18-55-59.jpg';
-import teamMember4 from '@/assets/team-member-4.jpg';
+import teamMember4 from '@/assets/photo_2025-07-24_19-00-33.jpg';
 
 const teamMembers = [
   {
     id: 1,
     name:"Parham Keyhani",
-    role: "BackEnd Developer",
+    role: "Software Engineer",
     image: teamMember1,
     description: "Backend Developer with a passion for building robust and maintainable server-side systems. With hands-on experience in Go and Django, capable for solving complex problems and optimizing backend performance",
     social: {
@@ -38,7 +38,7 @@ const teamMembers = [
   {
     id: 3,
     name: "Avesta Safarian",
-    role: "Lead Software Engineer",
+    role: "Mechathronic Engineer",
     image: teamMember3,
     description: "Full-stack developer with expertise in modern web technologies and system architecture.",
     social: {
@@ -50,7 +50,7 @@ const teamMembers = [
   {
     id: 4,
     name: "Mobin Ghorbani",
-    role: "Head of Design",
+    role: "Lead Software Engineer",
     image: teamMember4,
     description: "Code gets written, teams get led, and web apps get built — all with a mix of Go, Spring, Django, JS and its family and just the right amount of caffeine. Full-stack focus with a backend twist, and always aiming for clean code and a solid user experience.",
     social: {
