@@ -97,7 +97,7 @@ const ProjectsTimeline = () => {
   useEffect(() => {
     let ticking = false;
     let lastWheelTime = 0;
-    const wheelThrottle = 100; // Throttle wheel events
+    const wheelThrottle = 800; // Much slower throttle for smoother control
 
     const handleWheel = (e: WheelEvent) => {
       if (!ref.current) return;
@@ -173,9 +173,9 @@ const ProjectsTimeline = () => {
     <section ref={ref} id="projects" className="py-20 bg-background">
       <div className="container mx-auto px-4">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 80 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
@@ -237,18 +237,31 @@ const ProjectsTimeline = () => {
           <div className="overflow-hidden">
             <motion.div
               key={currentSlide}
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -50 }}
-              transition={{ duration: 0.8, ease: "easeInOut" }}
+              initial={{ opacity: 0, y: 100, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -100, scale: 0.95 }}
+              transition={{ 
+                duration: 1.2, 
+                ease: [0.25, 0.46, 0.45, 0.94],
+                type: "spring",
+                stiffness: 100,
+                damping: 20
+              }}
               className="grid gap-8"
             >
               {projectsByYear[yearSlides[currentSlide]]?.map((project, index) => (
                 <motion.div
                   key={project.id}
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100, scale: 0.9 }}
+                  animate={{ opacity: 1, x: 0, scale: 1 }}
+                  transition={{ 
+                    duration: 1.0, 
+                    delay: index * 0.3,
+                    ease: [0.25, 0.46, 0.45, 0.94],
+                    type: "spring",
+                    stiffness: 80,
+                    damping: 25
+                  }}
                 >
                   <Card className="overflow-hidden shadow-xl hover:shadow-glow transition-all duration-500 hover:-translate-y-2 bg-gradient-to-br from-card to-card/50 backdrop-blur-sm border border-primary/20">
                     <CardContent className="p-8">
