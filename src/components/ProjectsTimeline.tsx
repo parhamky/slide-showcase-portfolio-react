@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { Calendar, ExternalLink, Github, ChevronUp, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -77,9 +77,10 @@ const upcomingProjects = [
 ];
 
 const ProjectsTimeline = () => {
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isScrolling, setIsScrolling] = useState(false);
 
   // Group projects by year
   const projectsByYear = [...projects, ...upcomingProjects.map(p => ({ ...p, status: 'upcoming', link: '#', github: '#' }))]
@@ -92,6 +93,51 @@ const ProjectsTimeline = () => {
 
   const yearSlides = Object.keys(projectsByYear).sort((a, b) => parseInt(b) - parseInt(a));
 
+  // Scroll-based navigation
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!ref.current) return;
+
+      const section = ref.current;
+      const rect = section.getBoundingClientRect();
+      const sectionHeight = rect.height;
+      const windowHeight = window.innerHeight;
+      
+      // Check if section is in view
+      if (rect.top <= windowHeight * 0.5 && rect.bottom >= windowHeight * 0.5) {
+        setIsScrolling(true);
+        
+        // Calculate scroll progress within the section
+        const scrollProgress = Math.max(0, Math.min(1, (windowHeight * 0.5 - rect.top) / (sectionHeight - windowHeight)));
+        
+        // Determine which slide should be active based on scroll progress
+        const newSlide = Math.floor(scrollProgress * yearSlides.length);
+        const clampedSlide = Math.min(newSlide, yearSlides.length - 1);
+        
+        if (clampedSlide !== currentSlide) {
+          setCurrentSlide(clampedSlide);
+        }
+        
+        // Prevent default scrolling while in timeline section (except at the end)
+        if (scrollProgress < 0.95) {
+          document.body.style.overflow = 'hidden';
+        } else {
+          document.body.style.overflow = 'unset';
+        }
+      } else {
+        setIsScrolling(false);
+        document.body.style.overflow = 'unset';
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: false });
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      document.body.style.overflow = 'unset';
+    };
+  }, [currentSlide, yearSlides.length]);
+
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % yearSlides.length);
   };
@@ -101,10 +147,9 @@ const ProjectsTimeline = () => {
   };
 
   return (
-    <section id="projects" className="py-20 bg-background">
+    <section ref={ref} id="projects" className="py-20 bg-background">
       <div className="container mx-auto px-4">
         <motion.div
-          ref={ref}
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
