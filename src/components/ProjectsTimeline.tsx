@@ -93,48 +93,71 @@ const ProjectsTimeline = () => {
 
   const yearSlides = Object.keys(projectsByYear).sort((a, b) => parseInt(b) - parseInt(a));
 
-  // Scroll-based navigation
+  // Scroll-based navigation with smooth behavior
   useEffect(() => {
-    const handleScroll = () => {
+    let ticking = false;
+    let lastWheelTime = 0;
+    const wheelThrottle = 100; // Throttle wheel events
+
+    const handleWheel = (e: WheelEvent) => {
       if (!ref.current) return;
+
+      const now = Date.now();
+      if (now - lastWheelTime < wheelThrottle) return;
+      lastWheelTime = now;
 
       const section = ref.current;
       const rect = section.getBoundingClientRect();
-      const sectionHeight = rect.height;
       const windowHeight = window.innerHeight;
       
-      // Check if section is in view
-      if (rect.top <= windowHeight * 0.5 && rect.bottom >= windowHeight * 0.5) {
+      // Check if section is in viewport
+      if (rect.top <= windowHeight * 0.1 && rect.bottom >= windowHeight * 0.1) {
         setIsScrolling(true);
         
-        // Calculate scroll progress within the section
-        const scrollProgress = Math.max(0, Math.min(1, (windowHeight * 0.5 - rect.top) / (sectionHeight - windowHeight)));
-        
-        // Determine which slide should be active based on scroll progress
-        const newSlide = Math.floor(scrollProgress * yearSlides.length);
-        const clampedSlide = Math.min(newSlide, yearSlides.length - 1);
-        
-        if (clampedSlide !== currentSlide) {
-          setCurrentSlide(clampedSlide);
-        }
-        
-        // Prevent default scrolling while in timeline section (except at the end)
-        if (scrollProgress < 0.95) {
-          document.body.style.overflow = 'hidden';
-        } else {
-          document.body.style.overflow = 'unset';
+        // Handle wheel direction for slide navigation
+        if (e.deltaY > 0) { // Scrolling down
+          if (currentSlide < yearSlides.length - 1) {
+            e.preventDefault();
+            setCurrentSlide(prev => Math.min(prev + 1, yearSlides.length - 1));
+          }
+        } else { // Scrolling up
+          if (currentSlide > 0) {
+            e.preventDefault();
+            setCurrentSlide(prev => Math.max(prev - 1, 0));
+          }
         }
       } else {
         setIsScrolling(false);
-        document.body.style.overflow = 'unset';
       }
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: false });
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          if (!ref.current) return;
+          
+          const section = ref.current;
+          const rect = section.getBoundingClientRect();
+          const windowHeight = window.innerHeight;
+          
+          // Reset scrolling state when leaving section
+          if (rect.bottom < 0 || rect.top > windowHeight) {
+            setIsScrolling(false);
+          }
+          
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    // Use passive listeners for better performance
+    window.addEventListener('wheel', handleWheel, { passive: false });
+    window.addEventListener('scroll', handleScroll, { passive: true });
     
     return () => {
+      window.removeEventListener('wheel', handleWheel);
       window.removeEventListener('scroll', handleScroll);
-      document.body.style.overflow = 'unset';
     };
   }, [currentSlide, yearSlides.length]);
 
@@ -214,10 +237,10 @@ const ProjectsTimeline = () => {
           <div className="overflow-hidden">
             <motion.div
               key={currentSlide}
-              initial={{ opacity: 0, y: 100 }}
+              initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -100 }}
-              transition={{ duration: 0.6, ease: "easeInOut" }}
+              exit={{ opacity: 0, y: -50 }}
+              transition={{ duration: 0.8, ease: "easeInOut" }}
               className="grid gap-8"
             >
               {projectsByYear[yearSlides[currentSlide]]?.map((project, index) => (
